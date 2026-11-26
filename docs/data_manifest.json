@@ -1,0 +1,103 @@
+{
+  "file": "classifier_strict.parquet",
+  "release_url": "https://github.com/seahyunjin/mbti-project/releases/download/data-v1/classifier_strict.parquet",
+  "bytes": 1075279622,
+  "sha256": "9d4909772b338e5c72e342385f3ee3861f57bf101c32aa1a8546748a706db5ac",
+  "rows": 9128747,
+  "columns": [
+    "user_id",
+    "mbti",
+    "split",
+    "source_row_id",
+    "segment_id",
+    "text",
+    "text_hash",
+    "word_count",
+    "leak_weak",
+    "language"
+  ],
+  "source_rows": 1269825,
+  "source_train_test_author_overlap": 9008,
+  "authors_in_users_file": 10761,
+  "authors_with_strict_comments": 10757,
+  "user_splits": {
+    "train": 7532,
+    "test": 1615,
+    "val": 1614
+  },
+  "comment_splits": {
+    "train": 6396175,
+    "test": 1511335,
+    "val": 1221237
+  },
+  "mbti_counts": {
+    "ENFJ": 188100,
+    "ENFP": 277517,
+    "ENTJ": 437058,
+    "ENTP": 872245,
+    "ESFJ": 22464,
+    "ESFP": 16657,
+    "ESTJ": 29059,
+    "ESTP": 70664,
+    "INFJ": 1545819,
+    "INFP": 2047104,
+    "INTJ": 1167549,
+    "INTP": 1890330,
+    "ISFJ": 96780,
+    "ISFP": 54377,
+    "ISTJ": 87352,
+    "ISTP": 325672
+  },
+  "languages": {
+    "english": 5063374,
+    "uncertain": 4065373
+  },
+  "weak_leakage_comments": 14956,
+  "under_five_word_comments": 0,
+  "authors_above_five_comments": 10634,
+  "max_comments_per_author": 69276,
+  "final_audit_reasons": {
+    "": 9331486,
+    "same_author_duplicate": 4527919,
+    "under_5_words": 82128,
+    "non_english": 39525,
+    "empty_after_quotes": 16379,
+    "bot_or_moderation": 11472,
+    "cross_author_duplicate": 8387
+  },
+  "original_report": {
+    "source_rows": 1269825,
+    "source_train_test_author_overlap": 9008,
+    "conflicting_authors": 0,
+    "authors_kept": 10761,
+    "max_source_rows_per_file": null,
+    "use_lingua": true,
+    "counts": {
+      "raw_comments": 14017296,
+      "initially_retained": 9333749,
+      "same_author_duplicate": 4527919,
+      "under_5_words": 82128,
+      "non_english": 39525,
+      "empty_after_quotes": 16379,
+      "bot_or_moderation": 11472,
+      "cross_author_duplicate": 6124,
+      "classifier_strict": 9128747,
+      "classifier_base": 9331486,
+      "rag_train": 6396175
+    },
+    "notes": [
+      "body comment boundaries are provisional; inspect boundary_suspicious",
+      "uncertain language is retained, not assumed English",
+      "leak_weak is review-only; high leakage excluded from strict/RAG",
+      "source_row_id and segment_id together identify a source comment"
+    ]
+  },
+  "processing_code_commit": "e377e6d9bd9198da0a08f4b54532d2de2e3b5bc7",
+  "limitations": [
+    "Unbalanced classes; no five-comments-per-author cap.",
+    "Uncertain language and weak leakage are retained.",
+    "User IDs are pseudonyms; text is not guaranteed to be free of personal information.",
+    "Original report cross-author count precedes second-pass correction; final audit count is authoritative.",
+    "Strict output omits source_split, so source_row_id plus segment_id is not globally unique."
+  ]
+}

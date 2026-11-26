@@ -1,8 +1,8 @@
 """Full-corpus, auditable preprocessing for MBTI classification and later RAG.
 
-The notebook mbti_EDA.ipynb is the interactive entry point. Each source row is
+The local notebook mbti.ipynb is the interactive entry point. Each source row is
 a bundle of comments; a literal '";"' is the provisional boundary. Raw text
-never appears in the public processed output. No balancing or author cap is
+is cleaned, but complete de-identification is not guaranteed. No balancing or author cap is
 applied here. Split is assigned by author, independently of source split.
 """
 from __future__ import annotations
@@ -105,7 +105,8 @@ def source_metadata(paths: list[Path]) -> tuple[pd.DataFrame, pd.DataFrame, set[
     bad_labels = set(meta.loc[~consistent_axes | ~meta.mbti.isin(TYPES), 'author'])
     conflicts = set(meta.groupby('author').mbti.nunique().loc[lambda s:s.gt(1)].index) | bad_labels
     authors = meta.loc[~meta.author.isin(conflicts), ['author','mbti']].drop_duplicates()
-    # Source splits are ignored. Hashing makes the author split stable as rows grow.
+    # Source splits are ignored. Fixed-seed stratification is reproducible for
+    # the same author roster, but assignments may change when authors are added.
     authors = authors.sort_values('author').reset_index(drop=True)
     authors['user_id'] = [f'U{i:05d}' for i in range(1, len(authors)+1)]
     train, held = train_test_split(authors, test_size=.30, stratify=authors.mbti, random_state=42)

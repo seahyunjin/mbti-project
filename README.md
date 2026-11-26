@@ -1,5 +1,19 @@
 # MBTI Reddit comment preprocessing
 
+## 전처리 설명과 데이터
+
+- [전처리 설명 HTML](docs/preprocessing.html): 처리 순서, 사용자 단위 분할, 실제 제외 집계, 현재 한계를 정리했습니다. HTML을 다운로드해 브라우저로 열 수 있습니다.
+- [데이터 manifest](docs/data_manifest.json): 파일 크기, 행 수, 유형별 분포와 SHA-256을 기록했습니다.
+- 공개용 파일은 `classifier_strict.parquet` (9,128,747행, 약 1.08GB)입니다. `data-v1` Release 게시 후 아래 URL을 사용할 수 있습니다.
+
+```python
+import pandas as pd
+url = "https://github.com/seahyunjin/mbti-project/releases/download/data-v1/classifier_strict.parquet"
+df = pd.read_parquet(url, columns=["user_id", "mbti", "split"])
+```
+
+URL 읽기도 네트워크 전송이 발생합니다. 텍스트 전체를 읽으면 압축 파일보다 많은 RAM이 필요합니다. 현재 파일은 유형별 균형 추출과 사용자당 5개 제한을 적용하기 전의 결과입니다.
+
 This repository contains the preprocessing code and exploratory analysis notebook for an MBTI comment classification project. The raw and processed Parquet datasets are not stored in Git.
 
 ## Files

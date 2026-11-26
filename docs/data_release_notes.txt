@@ -1,0 +1,12 @@
+MBTI 전처리 데이터 v1
+
+classifier_strict.parquet: 9,128,747 comments; 1,075,279,622 bytes.
+Source: https://huggingface.co/datasets/minhaozhang/mbti
+
+The original train and test files were processed together and assigned new user-level splits. The split column contains train (6,396,175), val (1,221,237), and test (1,511,335). All counts refer to segmented comments.
+
+Important limitations: classes are not balanced and the five-comment-per-author cap is not applied. Uncertain language (4,065,373 comments) and weak leakage flags (14,956 comments) are retained. User IDs are pseudonyms; comment text is not guaranteed to contain no personal information.
+
+preprocessing.html documents the implemented processing order and current limitations. data_manifest.json contains aggregate counts, schema, and checksum. SHA256SUMS can be used to check the downloaded dataset.
+
+This release distributes the existing processed file without rerunning or silently changing preprocessing.
