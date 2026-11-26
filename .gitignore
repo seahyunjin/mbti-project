@@ -1,0 +1,18 @@
+# Raw and derived datasets stay outside the public code repository.
+data_hf/
+full_preprocessed/
+full_preprocessed_preview_v2/
+*.parquet
+*.sqlite
+
+# Local Python and notebook files.
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+.venv/
+venv/
+.env
+.env.*
+# This local notebook contains saved raw author names and comment previews.
+mbti.ipynb
